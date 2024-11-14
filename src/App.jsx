@@ -37,7 +37,7 @@ const data = [
 function App() {
   return (
       <div className="text-sm h-screen w-screen flex flex-col items-center justify-center gap-4">
-        <h1 className="font-semibold text-xl">Table Component</h1>
+        <h1 className="font-semibold text-2xl">Table Component</h1>
         <Table headers={headers} data={data} />
       </div>
   );
