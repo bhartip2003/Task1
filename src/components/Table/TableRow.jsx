@@ -1,20 +1,29 @@
-import PropTypes from "prop-types";
+import { useTableContext } from "../../TableContext";
 
-const TableRow = ({ headers, rowItem }) => {
+const TableRow = () => {
+  const { headers, data } = useTableContext();
   return (
     <>
-    {headers.map((header) => (
-      <td key={header} className="px-4 py-2">
-        {rowItem[header]}
-      </td>
-    ))}
+      {data.length > 0
+        ? data.map((rowData, index) => (
+            <tr
+              className={`${index % 2 == 0 ? "bg-gray-100" : "bg-white"} 
+              border-[1px] border-gray-300`}
+              key={index}
+            >
+              {headers.map((header) => (
+                <td
+                  key={header}
+                  className="pl-2 py-2 border-r-[1px] border-gray-300"
+                >
+                  {rowData[header]}
+                </td>
+              ))}
+            </tr>
+          ))
+        : "No data available."}
     </>
-
-);
-}
-TableRow.propTypes = {
-  rowItem: PropTypes.object.isRequired,
-  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  );
 };
 
 export default TableRow;

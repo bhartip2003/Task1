@@ -1,12 +1,15 @@
-import PropTypes from 'prop-types'
+import { useTableContext } from '../../TableContext';
 
-const TableHeader = ({label}) => {
+const TableHeader = () => {
+    const {headers} = useTableContext();
     return(
-        <th className='font-semibold px-4 py-2'>{label}</th>
-    );}
-
-TableHeader.propTypes = {
-    label: PropTypes.string.isRequired,
-};
+        <>
+        {headers.map((label) => (
+            <th key={label} className='font-semibold pl-2 py-2 w-[15rem] border-[1px] border-gray-300'>{label}</th>
+        ))
+        }
+        </>
+    );
+}
 
 export default TableHeader
