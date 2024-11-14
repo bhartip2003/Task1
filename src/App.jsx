@@ -1,33 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Table from './components/Table/Table'
+
+const headers = [
+  "Company", "Contact", "Country"
+];
+
+const data = [
+  {Company: "Alfreds Futterkiste", Contact: "Maria Anders", Country: "Germany"},
+  {Company: "Centro comercial Moctezuma", Contact: "Francisco Chang", Country: "Mexico"},
+  {Company: "Ernst Handel", Contact: "Roland Mendel", Country: "Austria"},
+  {Company: "Island Trading", Contact: "Maria Anders", Country: "UK"},
+  {Company: "Laughing Bacchus Winecellars", Contact: "Maria Anders", Country: "Canada"},
+  {Company: "Magazzini Alimentari Riuniti", Contact: "Giovanni Rovelli", Country: "Italy"},
+];
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  console.log("data: ", data);
+  console.log("headers:", headers);
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className='text-sm h-screen w-screen flex flex-col items-center justify-center gap-4'>
+      <h1 className='font-semibold text-lg'>Table Component</h1>
+      <Table headers={headers} data={data} />
+    </div>
     </>
   )
 }
