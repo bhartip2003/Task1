@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import "./App.css";
 import Table from "./components/Table/Table";
+import axios from "axios";
 
 const headers = ["Company", "Contact", "Country"];
 
@@ -34,7 +36,18 @@ const data = [
   },
 ];
 
+const API_KEY = import.meta.env.VITE_API_STOCK;
+
 function App() {
+
+   useEffect(() => {
+    async function stockAPI() {
+      const response = await axios.get(`https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=${API_KEY}`);
+      console.log("gainers",response.data.top_gainers);
+      console.log("losers",response.data.top_losers);
+    }
+    stockAPI();
+  })
   return (
       <div className="text-sm h-screen w-screen flex flex-col items-center justify-center gap-4">
         <h1 className="font-semibold text-2xl">Table Component</h1>
