@@ -7,8 +7,8 @@ const TopGainers = () => {
   const { topGainers, loading, error } = useSelector((state) => state.stocks);
 
   useEffect(() => {
-    dispatch(fetchTopGainers);
-  }, [dispatch]);
+    dispatch(fetchTopGainers());
+  }, []);
 
   if (loading) return <p>LOADING...</p>;
 
@@ -18,26 +18,28 @@ const TopGainers = () => {
 
   return (
     <div>
-      {!loading && (
+      
         <table>
           <thead>
-            <th>Ticker</th>
-            <th>Price</th>
-            <th>Change_Amount</th>
-            <th>Change %</th>
+            <tr>
+              <th>Ticker</th>
+              <th>Price</th>
+              <th>Change_Amount</th>
+              <th>Change %</th>
+            </tr>
           </thead>
           <tbody>
-            {topGainers.map((stocks, index) => (
+            {topGainers != undefined && topGainers.length > 0 ? ( topGainers.map((stocks, index) => (
               <tr key={index}>
                 <td>{stocks.ticker}</td>
                 <td>{stocks.price}</td>
                 <td>{stocks.change_amount}</td>
                 <td>{stocks.change_percentage}</td>
               </tr>
-            ))}
+            ))) : <tr><td>"No data found"</td></tr> }
           </tbody>
         </table>
-      )}
+     
     </div>
   );
 };

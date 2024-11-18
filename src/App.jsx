@@ -1,7 +1,6 @@
 
 import LandingPage from "./components/LandingPage";
 
-impport
 
 function App() {
 

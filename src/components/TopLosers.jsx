@@ -1,12 +1,14 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchTopLosers } from "../redux/stocksSlice";
 
 const TopLosers = () => {
   const dispatch = useDispatch();
   const { topLosers, loading, error } = useSelector((state) => state.stocks);
+
   useEffect(() => {
-    dispatch(fetchTopLosers);
-  }, [dispatch]);
+    dispatch(fetchTopLosers());
+  }, []);
 
   if (loading) return <p>LOADING...</p>;
 
@@ -16,26 +18,28 @@ const TopLosers = () => {
 
   return (
     <div>
-      {!loading && (
-        <table>
-          <thead>
-            <th>Ticker</th>
-            <th>Price</th>
-            <th>Change_Amount</th>
-            <th>Change %</th>
+        <table className="">
+          <thead className="">
+            <tr className="">
+              <th>Ticker</th>
+              <th>Price</th>
+              <th>Change_Amount</th>
+              <th>Change %</th>
+            </tr>
           </thead>
-          <tbody>
-            {topLosers.map((stocks, index) => (
-              <tr key={index}>
-                <td>{stocks.ticker}</td>
-                <td>{stocks.price}</td>
-                <td>{stocks.change_amount}</td>
-                <td>{stocks.change_percentage}</td>
+          <tbody >
+            { topLosers != undefined && topLosers.length > 0 ? 
+            (topLosers.map((stocks, index) => (
+              <tr key={index} className="">
+                <td className="">{stocks.ticker}</td>
+                <td className="">{stocks.price}</td>
+                <td className="">{stocks.change_amount}</td>
+                <td className="">{stocks.change_percentage}</td>
               </tr>
-            ))}
+              ) 
+            )): <tr><td>"No data found"</td></tr> }
           </tbody>
         </table>
-      )}
     </div>
   );
 };

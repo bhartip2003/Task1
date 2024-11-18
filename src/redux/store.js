@@ -5,6 +5,7 @@ const store = configureStore({
     reducer: {
         stocks: stocksReducer,
     },
+    
 })
 
 export default store;
