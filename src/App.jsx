@@ -1,18 +1,12 @@
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
-import TopGainers from "./components/LandingPage/TopGainers";
-import TopLosers from "./components/LandingPage/TopLosers";
+
+import LandingPage from "./components/LandingPage";
 
 impport
 
 function App() {
 
-
   return (
-    <Provider store={store}>
-      <TopGainers />
-      <TopLosers />
-    </Provider>
+    <LandingPage/>
   )
 }
 
