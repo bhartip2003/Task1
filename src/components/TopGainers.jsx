@@ -18,10 +18,9 @@ const TopGainers = () => {
 
   return (
     <div>
-      
-        <table>
+        <table className="max-w-max border-2 border-gray-100">
           <thead>
-            <tr>
+            <tr className="">
               <th>Ticker</th>
               <th>Price</th>
               <th>Change_Amount</th>
@@ -30,7 +29,7 @@ const TopGainers = () => {
           </thead>
           <tbody>
             {topGainers != undefined && topGainers.length > 0 ? ( topGainers.map((stocks, index) => (
-              <tr key={index}>
+              <tr key={index} className="">
                 <td>{stocks.ticker}</td>
                 <td>{stocks.price}</td>
                 <td>{stocks.change_amount}</td>
