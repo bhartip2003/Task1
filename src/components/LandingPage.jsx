@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import StocksTable from './StocksTabel';
-import { gainersSelector, losersSelector } from '../store/selectors/useStockSelector';
+import { gainersSelector, losersSelector } from '../store/selectors/stockSelector';
 import { useDispatch } from 'react-redux';
 import { fetchTopGainers, fetchTopLosers } from '../store/reducers/stocks';
 // import {top_gainers, top_losers} from "../data.json"

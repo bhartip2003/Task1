@@ -1,4 +1,4 @@
-import { errorSelector, loadingSelector } from "../store/selectors/useStockSelector";
+import { errorSelector, loadingSelector } from "../store/selectors/stockSelector";
 
 const StocksTable = ({ data, title, color }) => {
   const loading = useSelector(loadingSelector);
