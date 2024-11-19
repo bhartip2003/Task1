@@ -6,13 +6,13 @@ const API_KEY = import.meta.env.VITE_API_STOCK;
 
 export const fetchTopGainers = createAsyncThunk('stocks/fetchTopGainers', async(params, {dispatch}) => {
     const response = await axios.get(`https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=${API_KEY}`);
-    console.log("top Gainers: ", response.data.top_gainers);
+    
     dispatch(setTopGainers(response.data.top_gainers));
 })
 
 export const fetchTopLosers = createAsyncThunk('stocks/fetchTopLosers', async(params, {dispatch}) => {
     const response = await axios.get(`https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=${API_KEY}`);
-    console.log("top Losers: ",response.data.top_losers);
+    
     dispatch(setTopLosers(response.data.top_losers));
 })
 
