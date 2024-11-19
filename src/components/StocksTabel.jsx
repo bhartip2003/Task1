@@ -1,14 +1,14 @@
-import { useSelector } from "react-redux";
+import { useStockSelector } from "../hooks/useStockSelector";
 
 const StocksTable = ({ data, title, color }) => {
-  const { loading, error } = useSelector((state) => state.stocks);
+  const { loading, error } = useStockSelector();
 
   if (loading) return <p>LOADING...</p>;
 
   if (error) {
     return <p>Error: {error}</p>;
   }
-  console.log(data);
+ 
   return (
     <div className="my-4 flex flex-col items-center justify-center">
       <h1 className={`font-bold text-2xl ${color}`}>{title}</h1>
