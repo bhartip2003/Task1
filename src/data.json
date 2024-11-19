@@ -1,0 +1,5 @@
+{
+    "headers": [
+        "ticker", "price", "change_amount", "change_percentage"
+    ]
+}

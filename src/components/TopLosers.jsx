@@ -18,7 +18,7 @@ const TopLosers = () => {
 
   return (
     <div className="my-4 flex flex-col items-center">
-      <h1 className="font-bold text-2xl">Top Losers</h1>
+      <h1 className="font-bold text-2xl text-red-500">Top Losers</h1>
       <table className="my-2 max-w-max border-2 border-gray-100 flex flex-col items-center">
         <thead className="">
           <tr className="py-2 px-4">
@@ -32,16 +32,16 @@ const TopLosers = () => {
           {topLosers != undefined && topLosers.length > 0 ? (
             topLosers.map((stocks, index) => (
               <tr
-                key={index}
+                key={stocks.ticker}
                 className={`${index % 2 == 0 ? "bg-gray-100" : "bg-white"} 
               border-[1px] border-gray-300`}
               >
-                <td className="px-3 border-r-2 border-b-2">{stocks.ticker}</td>
-                <td className="px-3 border-r-2 border-b-2">{stocks.price}</td>
-                <td className="px-3 border-r-2 border-b-2">
+                <td className=" border-r-2 border-b-2">{stocks.ticker}</td>
+                <td className=" border-r-2 border-b-2">{stocks.price}</td>
+                <td className=" border-r-2 border-b-2">
                   {stocks.change_amount}
                 </td>
-                <td className="px-3 border-b-2">{stocks.change_percentage}</td>
+                <td className=" border-b-2">{stocks.change_percentage}</td>
               </tr>
             ))
           ) : (

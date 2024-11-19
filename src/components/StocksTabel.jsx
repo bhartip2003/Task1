@@ -1,14 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
-import { fetchTopGainers } from "../redux/stocksSlice";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import {headers} from "../data.json";
 
-const TopGainers = () => {
-  const dispatch = useDispatch();
-  const { topGainers, loading, error } = useSelector((state) => state.stocks);
-
-  useEffect(() => {
-    dispatch(fetchTopGainers());
-  }, []);
+const StocksTable = ({ data, title, color }) => {
+  const { loading, error } = useSelector((state) => state.stocks);
 
   if (loading) return <p>LOADING...</p>;
 
@@ -18,19 +12,18 @@ const TopGainers = () => {
 
   return (
     <div className="my-4 flex flex-col items-center">
-      <h1 className="font-bold text-2xl text-green-500">Top Gainers</h1>
+      <h1 className={`font-bold text-2xl text-${color}`}>{title}</h1>
       <table className="my-2 max-w-max border-2 border-gray-100 flex flex-col items-center">
-        <thead>
-          <tr className="py-2 px-4 w-full">
-            <th className="px-3 border-r-2 border-b-2">Ticker</th>
-            <th className="px-3 border-r-2 border-b-2">Price</th>
-            <th className="px-3 border-r-2 border-b-2">Change_Amount</th>
-            <th className="px-3 border-b-2">Change %</th>
-          </tr>
+        <thead className="flex">
+          {headers.map((header) => (
+            <tr className=" flex items-center" key={header}>
+              <th className="px-3 border-x-2 capitalize">{header}</th>
+            </tr>
+          ))}
         </thead>
         <tbody>
-          {topGainers != undefined && topGainers.length > 0 ? (
-            topGainers.map((stocks, index) => (
+          {data != undefined && data.length > 0 ? (
+            data.map((stocks, index) => (
               <tr
                 key={stocks.ticker}
                 className={`${index % 2 == 0 ? "bg-gray-100" : "bg-white"} 
@@ -57,4 +50,4 @@ const TopGainers = () => {
   );
 };
 
-export default TopGainers;
+export default StocksTable;
