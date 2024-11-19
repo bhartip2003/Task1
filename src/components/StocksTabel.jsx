@@ -1,5 +1,5 @@
 import { errorSelector, loadingSelector } from "../store/selectors/stockSelector";
-
+import { useSelector } from "react-redux";
 const StocksTable = ({ data, title, color }) => {
   const loading = useSelector(loadingSelector);
   const error = useSelector(errorSelector);

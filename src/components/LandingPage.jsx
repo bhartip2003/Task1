@@ -3,6 +3,7 @@ import StocksTable from './StocksTabel';
 import { gainersSelector, losersSelector } from '../store/selectors/stockSelector';
 import { useDispatch } from 'react-redux';
 import { fetchTopGainers, fetchTopLosers } from '../store/reducers/stocks';
+import { useSelector } from 'react-redux';
 // import {top_gainers, top_losers} from "../data.json"
 
 const LandingPage = () => {
