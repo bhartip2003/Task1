@@ -1,7 +1,8 @@
-import { useStockSelector } from "../hooks/useStockSelector";
+import { errorSelector, loadingSelector } from "../store/selectors/useStockSelector";
 
 const StocksTable = ({ data, title, color }) => {
-  const { loading, error } = useStockSelector();
+  const loading = useSelector(loadingSelector);
+  const error = useSelector(errorSelector);
 
   if (loading) return <p>LOADING...</p>;
 

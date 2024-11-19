@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import StocksTable from './StocksTabel';
-import { useStockSelector } from '../hooks/useStockSelector';
+import { gainersSelector, losersSelector } from '../store/selectors/useStockSelector';
 import { useDispatch } from 'react-redux';
-import { fetchTopGainers, fetchTopLosers } from '../redux/stocksSlice';
+import { fetchTopGainers, fetchTopLosers } from '../store/reducers/stocks';
 // import {top_gainers, top_losers} from "../data.json"
 
 const LandingPage = () => {
   const dispatch = useDispatch();
-  const {topGainers, topLosers} = useStockSelector();
+  const topGainers = useSelector(gainersSelector);
+  const topLosers = useSelector(losersSelector);
 
   useEffect(() => {
     dispatch(fetchTopGainers());
