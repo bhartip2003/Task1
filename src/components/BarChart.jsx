@@ -2,12 +2,32 @@ import { Chart } from "chart.js/auto";
 import React from "react";
 import { income } from "../data.json";
 import { Bar } from "react-chartjs-2";
+import { useDispatch, useSelector } from "react-redux";
+import { errorSelector, incomeSelector, loadingSelector } from "../store/selectors/incomeSelector";
+import { fetchIncomeStatement } from "../store/reducers/income";
 
-const BarChart = () => {
-  const incomeData = income.annualReports;
+const BarChart = ({ticker}) => {
+    const dispatch = useDispatch();
+    const loading = useSelector(loadingSelector);
+    const error = useSelector(errorSelector);
+    const incomeStatement = useSelector(incomeSelector);
+    
+    const incomeData = income.annualReports;
+
+  useEffect(() => {
+    dispatch(fetchIncomeStatement(ticker));
+  }, [ticker]);
+
+  if(loading){
+    return <p>LOADING...</p>
+  }
+
+  if(error){
+    return <p>{error}</p>
+  }
 
 //   y-axis data
-  const labels = incomeData.map((data) => data.fiscalDateEnding);
+  const labels = incomeStatement.map((data) => data.fiscalDateEnding);
 
 //  chart data
   const data = {
