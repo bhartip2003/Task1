@@ -8,6 +8,7 @@ import BarChart from "../components/BarChart";
 const Company = () => {
   return (
     <>
+    {/* Company overview */}
       <section className="container flex flex-col justify-center my-20 px-20 mx-28 gap-4">
         <h1 className="font-semibold text-3xl">{company.Name}</h1>
         <p className="mt-10 text-gray-300">{company.Description}</p>
@@ -31,6 +32,8 @@ const Company = () => {
             {company.Industry}
           </span>
         </div>
+        
+        {/* Barchart component */}
         <BarChart />
       </section>
     </>

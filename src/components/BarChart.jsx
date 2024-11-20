@@ -6,21 +6,10 @@ import { Bar } from "react-chartjs-2";
 const BarChart = () => {
   const incomeData = income.annualReports;
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "Total Revenue Over Years",
-      },
-    },
-  };
-
+//   y-axis data
   const labels = incomeData.map((data) => data.fiscalDateEnding);
 
+//  chart data
   const data = {
     labels,
     datasets: [

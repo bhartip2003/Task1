@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<LandingPage/>} />
-      <Route path="/company" element={<Company/>} />
+      <Route path="/company/:ticker" element={<Company/>} />
     </Routes>
     </BrowserRouter>
   )

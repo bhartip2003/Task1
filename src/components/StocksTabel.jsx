@@ -15,7 +15,7 @@ const StocksTable = ({ data, title, color }) => {
       <h1 className={`font-bold text-2xl ${color}`}>{title}</h1>
       <table className="my-2 border-2 border-gray-100 ">
         <thead className="">
-          <tr className="" >
+          <tr className="my-2" >
               <th className="px-3 border-x-2 capitalize">ticker</th>
               <th className="px-3 border-x-2 capitalize">price</th>
               <th className="px-3 border-x-2 capitalize">change_amount</th>
@@ -28,7 +28,8 @@ const StocksTable = ({ data, title, color }) => {
               <tr
                 key={stockData.ticker}
                 className={`${index % 2 == 0 ? "bg-gray-100 text-black" : ""} 
-              border-[1px] border-gray-300 px-4 py-2`}
+              border-[1px] border-gray-300 px-4 py-2 cursor-pointer hover:text-violet-500`}
+              onClick={() => handleClick(stockData.ticker)}
               >
                   <td className="px-3 border-r-2 border-b-2">
                     {stockData.ticker}
