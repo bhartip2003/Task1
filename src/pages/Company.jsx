@@ -6,6 +6,8 @@ import { TfiExchangeVertical } from "react-icons/tfi";
 import BarChart from "../components/BarChart";
 
 const Company = () => {
+
+  
   return (
     <>
     {/* Company overview */}
@@ -32,7 +34,7 @@ const Company = () => {
             {company.Industry}
           </span>
         </div>
-        
+
         {/* Barchart component */}
         <BarChart />
       </section>

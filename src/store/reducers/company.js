@@ -15,13 +15,13 @@ export const fetchCompanyOverview = createAsyncThunk('company/fetchCompanyOvervi
 const companySlice = createSlice({
     name: 'company',
     initialState: {
-        company: null,
+        companyOverview: null,
         loading: false,
         error: null,
     },
     reducers: {
         setCompanyDetails : (state, action) => {
-            state.company = action.payload
+            state.companyOverview = action.payload
         },
         setLoading: (state, action) => {
             state.loading= action.payload
