@@ -1,13 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import { errorSelector, loadingSelector } from "../store/selectors/stockSelector";
 import { useSelector } from "react-redux";
+
+
 const StocksTable = ({ data, title, color }) => {
   const loading = useSelector(loadingSelector);
   const error = useSelector(errorSelector);
+  const navigate = useNavigate();
 
   if (loading) return <p>LOADING...</p>;
 
   if (error) {
     return <p>Error: {error}</p>;
+  }
+
+  const handleClick = (ticker) => {
+    navigate(`company/${ticker}`);
   }
  
   return (

@@ -5,9 +5,9 @@ import axios from "axios";
 const API_KEY = import.meta.env.VITE_API_STOCK;
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-export const fetchIncomeStatement = createAsyncThunk('company/fetchIncomeStatement', async(ticker, {dispatch}) => {
+export const fetchIncomeStatement = createAsyncThunk('income/fetchIncomeStatement', async(ticker, {dispatch}) => {
     const response = await axios.get(`${BASE_URL}/query?function=INCOME_STATEMENT&symbol=${ticker}&apikey=${API_KEY}`);
-   
+    
     dispatch(setIncomeStatement(response.data.annualReports));
 })
 
