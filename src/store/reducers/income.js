@@ -15,13 +15,13 @@ export const fetchIncomeStatement = createAsyncThunk('company/fetchIncomeStateme
 const incomeSlice = createSlice({
     name: 'income',
     initialState: {
-        income: [],
+        incomeStatement: [],
         loading: false,
         error: null,
     },
     reducers: {
         setIncomeStatement : (state, action) => {
-            state.income = action.payload
+            state.incomeStatement = action.payload
         },
         setLoading: (state, action) => {
             state.loading= action.payload
