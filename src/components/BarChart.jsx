@@ -26,7 +26,7 @@ const BarChart = ({company}) => {
   }
 
 //   y-axis data
-  const labels = incomeStatement.map((data) => data.fiscalDateEnding);
+  const labels = incomeStatement.length>0 && incomeStatement.map((data) => data.fiscalDateEnding);
 
 //  chart data
   const data = {
@@ -35,7 +35,7 @@ const BarChart = ({company}) => {
       {
         label: "Total Revenue (USD)",
         backgroundColor: "#6366f1",
-        data: incomeData.map((data) => data.totalRevenue),
+        data: incomeStatement.length> 0 && incomeStatement.map((data) => data.totalRevenue),
       },
     ],
   };

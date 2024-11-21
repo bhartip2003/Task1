@@ -20,8 +20,8 @@ const LandingPage = () => {
     <div className='container flex flex-col items-center justify-center m-10 p-10'>
       <h1 className='text-3xl font-bold my-5'>Stocks Table Page</h1>
       <div className='flex flex-col lg:flex-row items-center justify-center gap-x-20 '>
-        <StocksTable data={top_gainers} title="Top Gainers" color="text-green-500" />
-        <StocksTable data={top_losers} title="Top Losers" color="text-red-500" />
+        <StocksTable data={topGainers} title="Top Gainers" color="text-green-500" />
+        <StocksTable data={topLosers} title="Top Losers" color="text-red-500" />
       </div>
       </div>
   )
