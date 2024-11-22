@@ -29,7 +29,7 @@ const StocksTable = ({ data, title, color }) => {
         <thead className="">
           <tr className="my-2">
             {headers.map((header) => (
-              <th className="px-3 border-x-2 capitalize">{header}</th>
+              <th key={header} className="px-3 border-x-2 capitalize">{header}</th>
             ))}
           </tr>
         </thead>
@@ -43,7 +43,7 @@ const StocksTable = ({ data, title, color }) => {
                 onClick={() => handleClick(stockData.ticker)}
               >
                 {headers.map((header) => (
-                  <td className="px-3 border-r-2 border-b-2">
+                  <td key={header} className="px-3 border-r-2 border-b-2">
                     {stockData[header]}
                   </td>
                 ))}
