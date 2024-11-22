@@ -12,6 +12,7 @@ import {
 } from "../store/selectors/companySelector";
 import { useParams } from "react-router-dom";
 import { fetchCompanyOverview } from "../store/reducers/company";
+import Loading from "../components/Loading";
 
 const Company = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const Company = () => {
   }, [ticker]);
 
   if (loading) {
-    return <p>LOADING...</p>;
+    return <Loading/>;
   }
 
   if (error) {
