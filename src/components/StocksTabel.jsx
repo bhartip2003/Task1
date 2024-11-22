@@ -4,7 +4,7 @@ import {
   loadingSelector,
 } from "../store/selectors/stockSelector";
 import { useSelector } from "react-redux";
-import { headers } from "../data.json";
+import { headers } from "../data/data.json";
 import Loading from "./Loading";
 
 const StocksTable = ({ data, title, color }) => {

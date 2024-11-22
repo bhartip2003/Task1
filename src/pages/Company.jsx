@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { company } from "../data.json";
 import { RiMapPin2Line } from "react-icons/ri";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { TfiExchangeVertical } from "react-icons/tfi";

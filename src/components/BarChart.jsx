@@ -1,6 +1,5 @@
 import { Chart } from "chart.js/auto";
 import React, { useEffect } from "react";
-import { income } from "../data.json";
 import { Bar } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { errorSelector, incomeSelector, loadingSelector } from "../store/selectors/incomeSelector";
@@ -12,7 +11,6 @@ const BarChart = ({company}) => {
     const loading = useSelector(loadingSelector);
     const error = useSelector(errorSelector);
     const incomeStatement = useSelector(incomeSelector);
-    const incomeData = income.annualReports;
 
   useEffect(() => {
     dispatch(fetchIncomeStatement(company));
