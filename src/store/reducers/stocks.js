@@ -1,19 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios";
+import {top_gainers, top_losers} from "../../data/data.json"
 
+const isMockData = true;
 
 const API_KEY = import.meta.env.VITE_API_STOCK;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const fetchTopGainers = createAsyncThunk('stocks/fetchTopGainers', async(params, {dispatch}) => {
-    const response = await axios.get(`https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=${API_KEY}`);
-   
-    dispatch(setTopGainers(response.data.top_gainers));
-})
-
-export const fetchTopLosers = createAsyncThunk('stocks/fetchTopLosers', async(params, {dispatch}) => {
-    const response = await axios.get(`https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=${API_KEY}`);
     
-    dispatch(setTopLosers(response.data.top_losers));
+    if(isMockData){
+        dispatch(setTopGainers(top_gainers));
+        dispatch(setTopLosers(top_losers));
+    }else {
+        const response = await axios.get(`${BASE_URL}/query?function=TOP_GAINERS_LOSERS&apikey=${API_KEY}`);
+        dispatch(setTopGainers(response.data.top_gainers));
+        dispatch(setTopLosers(response.data.top_losers));
+    }
 })
 
 

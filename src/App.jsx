@@ -1,11 +1,16 @@
-
-import LandingPage from "./components/LandingPage";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import Company from "./pages/Company";
 
 function App() {
 
   return (
-    <LandingPage/>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<LandingPage/>} />
+      <Route path="/company/:ticker" element={<Company/>} />
+    </Routes>
+    </BrowserRouter>
   )
 }
 
