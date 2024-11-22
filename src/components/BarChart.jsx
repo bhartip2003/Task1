@@ -28,6 +28,7 @@ const BarChart = ({company}) => {
 
 //   y-axis data
   const labels = incomeStatement.length>0 && incomeStatement.map((data) => data.fiscalDateEnding);
+  const totalRevenueData = incomeStatement.length> 0 && incomeStatement.map((data) => data.totalRevenue);
 
 //  chart data
   const data = {
@@ -36,13 +37,16 @@ const BarChart = ({company}) => {
       {
         label: "Total Revenue (USD)",
         backgroundColor: "#6366f1",
-        data: incomeStatement.length> 0 && incomeStatement.map((data) => data.totalRevenue),
+        data: totalRevenueData,
       },
     ],
   };
   return (
     <div className='my-20'>
-      <Bar data={data} />
+      {
+        totalRevenueData ? 
+        <Bar data={data} /> : "No data found"
+      }
     </div>
   );
 };
