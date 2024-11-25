@@ -2,21 +2,24 @@ import React from 'react'
 import { GiCeilingLight, GiLipstick, GiPerfumeBottle, GiSlicedBread, GiWoodenChair } from 'react-icons/gi'
 
 const buttonConfig = {
-    "beauty": {component: GiLipstick, color: 'pink-300'},
-    "fragrances": {component: GiPerfumeBottle, color: 'orange-300'},
-    "furniture": {component: GiWoodenChair, color: 'blue-300'},
-    "groceries": {component: GiSlicedBread, color: 'green-300'},
-    "home-decoration": {component: GiCeilingLight, color: "yellow-300"}
+    "beauty": {component: GiLipstick, color: 'bg-pink-200'},
+    "fragrances": {component: GiPerfumeBottle, color: 'bg-orange-200'},
+    "furniture": {component: GiWoodenChair, color: 'bg-blue-200'},
+    "groceries": {component: GiSlicedBread, color: 'bg-green-200'},
+    "home-decoration": {component: GiCeilingLight, color: "bg-yellow-200"}
 }
 
-const Button = ({type}) => {
+const Button = ({type, name}) => {
 const { component: Icon, color } = buttonConfig[type];
 
   return (
-    <button className={`bg-${color} text-black flex items-center gap-x-3`}>
+   
+    <button className={`${color} text-[#080C1C] rounded-lg py-3 px-3 flex items-center gap-x-2`}>
         <Icon />
+        {name}
     </button>
+   
   )
 }
 
-export default Button
+export default Button;
