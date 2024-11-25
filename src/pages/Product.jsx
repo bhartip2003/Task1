@@ -2,7 +2,16 @@ import React from 'react'
 
 const Product = () => {
   return (
-    <div>Product</div>
+    <div>
+        <table>
+            <thead>
+                
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
   )
 }
 

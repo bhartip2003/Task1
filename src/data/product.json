@@ -1,0 +1,16 @@
+{
+    "headers": [
+        "title",
+        "category",
+        "price",
+        "rating",
+        "stock"
+    ],
+    "headerTitle": [
+        "Product Name",
+        "Category",
+        "Price",
+        "Rating",
+        "Stock"
+    ]
+}
