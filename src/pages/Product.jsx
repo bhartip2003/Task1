@@ -5,10 +5,11 @@ import axios from 'axios'
 
 const Product = () => {
     const [data, setData] = useState([]);
+    const limit = 15;
 
     useEffect(() => {
         const fetchProducts = async() => {
-            const response = await axios.get("https://dummyjson.com/products");
+            const response = await axios.get(`https://dummyjson.com/products?limit=${limit}`);
             setData(response.data.products);
         }
 
