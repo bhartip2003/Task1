@@ -12,8 +12,7 @@ export const fetchProducts = createAsyncThunk(
           `${BASE_URL}/products?limit=${limit}&skip=${skip}`
         );
       dispatch(setProducts(response.data.products));
-    }
-  
+    }  
 );
 
 const productSlice = createSlice({
