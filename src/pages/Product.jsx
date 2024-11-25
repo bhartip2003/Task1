@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { headers, headerTitle } from "../data/product.json";
 import axios from "axios";
 import Button from "../components/Button";
+import Table from "../components/Table";
 
 const Product = () => {
   const [data, setData] = useState([]);
@@ -50,26 +51,7 @@ const Product = () => {
       </div>
         
         {/* product table */}
-      <table>
-        <thead>
-          <tr>
-            {headerTitle.map((header) => (
-              <th className="font-semibold text-lg" key={header}>
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              {headers.map((header) => (
-                <td>{item[header]}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Table data={data} headers={headers} headerTitle={headerTitle} toggle={false} />
     </div>
   );
 };

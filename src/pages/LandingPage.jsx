@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import StocksTable from "../components/StocksTabel";
+import StocksTable from "../components/coreComponents/StocksTabel";
 import {
   gainersSelector,
   losersSelector,
