@@ -9,25 +9,25 @@ import {
 import Loading from "./Loading";
 
 const InfiniteScroll = ({ category }) => {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({threshold: 1});
   const dispatch = useDispatch();
   const productData = useSelector(productSelector);
   const loading = useSelector(loadingSelector);
 
   const pageNumber = productData.length / 15;
   useEffect(() => {
-    dispatch(setLoading(true));
     if (inView && !loading) {
-      setTimeout(() => 
+      dispatch(setLoading(true));
+      setTimeout(() => {
         dispatch(
           fetchProducts({
             category: category,
             limit: 15,
             skip: pageNumber * 15,
           })
-        )
-    , 900);
-    dispatch(setLoading(false));
+        );
+        dispatch(setLoading(false));
+      }, 900);
     }
   }, [inView, loading]);
 

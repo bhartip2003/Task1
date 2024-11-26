@@ -4,6 +4,7 @@ import companyReducer from "./reducers/company";
 import incomeReducer from "./reducers/income";
 import categoryReducer from "./reducers/category";
 import productReducer from "./reducers/product";
+import paginationReducer from "./reducers/pagination"
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         income: incomeReducer,
         category: categoryReducer,
         product: productReducer,
+        pagination: paginationReducer,
     },
     
 })
