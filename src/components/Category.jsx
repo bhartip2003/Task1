@@ -23,7 +23,7 @@ const Category = ({ onButtonClick }) => {
             />
           ))
       ) : (
-        <p>Loading Categories...</p>
+        <p>...</p>
       )}
     </div>
   );
