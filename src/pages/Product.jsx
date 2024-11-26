@@ -1,32 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { headers, headerTitle } from "../data/product.json";
-import axios from "axios";
 import Button from "../components/Button";
 import Table from "../components/Table";
+import { useDispatch, useSelector } from "react-redux";
+import { categorySelector } from "../store/selectors/categorySelector";
+import { fetchCategory } from "../store/reducers/category";
+import { fetchProducts } from "../store/reducers/product";
+import {productSelector} from "../store/selectors/productSelector";
 
 const Product = () => {
   const [data, setData] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const categoryData = useSelector(categorySelector);
+  const productData = useSelector(productSelector);
+  const dispatch = useDispatch();
 
   const limit = 15;
 
-  const fetchCategories = async () => {
-    const response = await axios.get(
-      `https://dummyjson.com/products/categories`
-    );
-    setCategories(response.data);
-  };
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await axios.get(
-        `https://dummyjson.com/products?limit=${limit}`
-      );
-      setData(response.data.products);
-    };
-
-    fetchProducts();
-    fetchCategories();
+    dispatch(fetchProducts({limit:limit, skip:10}));
+    dispatch(fetchCategory());
   }, []);
 
   return (
@@ -35,8 +28,8 @@ const Product = () => {
 
       {/* product category */}
       <div className="flex gap-x-5">
-        {categories.length > 0 ? (
-          categories
+        {categoryData.length > 0 ? (
+          categoryData
             .slice(0, 5)
             .map((category) => (
               <Button
@@ -51,7 +44,7 @@ const Product = () => {
       </div>
         
         {/* product table */}
-      <Table data={data} headers={headers} headerTitle={headerTitle} toggle={false} />
+      <Table data={productData} headers={headers} headerTitle={headerTitle} toggle={false} />
     </div>
   );
 };

@@ -6,14 +6,16 @@ const BASE_URL = import.meta.env.VITE_PRODUCT_URL;
 
 export const fetchProducts = createAsyncThunk(
   "product/fetchProducts",
-  async (limit, skip, { dispatch }) => {
-      
+  async ({limit, skip}, { dispatch }) => {
+        
         const response = await axios.get(
           `${BASE_URL}/products?limit=${limit}&skip=${skip}`
         );
       dispatch(setProducts(response.data.products));
     }  
 );
+
+
 
 const productSlice = createSlice({
   name: "product",

@@ -6,11 +6,12 @@ const BASE_URL = import.meta.env.VITE_PRODUCT_URL;
 
 export const fetchCategory = createAsyncThunk(
   "category/fetchCategory",
-  async (limit, { dispatch }) => {
+  async (params, { dispatch }) => {
       
         const response = await axios.get(
-          `${BASE_URL}/category`
+          `${BASE_URL}/products/categories`
         );
+     
       dispatch(setCategory(response.data));
     }  
 );
@@ -18,7 +19,7 @@ export const fetchCategory = createAsyncThunk(
 const categorySlice = createSlice({
   name: "category",
   initialState: {
-    categoryData: null,
+    categoryData: [],
     loading: false,
     error: null,
   },
