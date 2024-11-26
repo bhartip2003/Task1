@@ -7,12 +7,13 @@ import { fetchProducts, resetProducts } from "../store/reducers/product";
 import { productSelector } from "../store/selectors/productSelector";
 import Category from "../components/Category";
 import InfiniteScroll from "../components/InfiniteScroll";
+import { limitSelector } from "../store/selectors/paginationSelector";
 
 const Product = () => {
   const [selectedCategory, setSelectedCategory] = useState();
   const productData = useSelector(productSelector);
   const dispatch = useDispatch();
-  const limit = 15;
+  const limit = useSelector(limitSelector);
 
   useEffect(() => {
     dispatch(fetchCategory());

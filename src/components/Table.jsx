@@ -7,7 +7,7 @@ const Table = ({headers, data, headerTitle, toggle}) => {
         <thead className="">
           <tr className="my-2">
             {headerTitle.map((header) => (
-              <th key={header} className="px-3 border-x-2 capitalize">{header}</th>
+              <th key={header} className="px-3 border-2 capitalize">{header}</th>
             ))}
           </tr>
         </thead>
@@ -18,11 +18,11 @@ const Table = ({headers, data, headerTitle, toggle}) => {
               <tr
                 key={item.ticker}
                 className={`${index % 2 == 0 && toggle ? "bg-gray-100 text-black" : ""} 
-              border-[1px] border-gray-300 px-4 py-2 cursor-pointer hover:text-violet-500`}
+               h-12 border-gray-300 px-4 py-2 cursor-pointer hover:text-violet-500`}
                 onClick={() => handleClick(item.ticker)}
               >
                 {headers.map((header) => (
-                  <td key={header} className="px-3 border-r-2 border-b-2">
+                  <td key={header} className="px-3 border-r-2 ">
                     {item[header]}
                   </td>
                 ))}
