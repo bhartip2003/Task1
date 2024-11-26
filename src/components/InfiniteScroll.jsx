@@ -23,7 +23,7 @@ const InfiniteScroll = ({ category }) => {
   const productData = useSelector(productSelector);
   const loading = useSelector(loadingSelector);
 
-  const pageNumber = Math.ceil(productData.length / 15);
+  const pageNumber = Math.ceil(productData.length / limit);
 
   useEffect(() => {
     setSearchParams({ limit, skip });
@@ -33,7 +33,7 @@ const InfiniteScroll = ({ category }) => {
     if (inView && !loading && pageNumber) {
       dispatch(setLoading(true));
       const timeoutId = setTimeout(() => {
-        const newSkip = pageNumber * 15;
+        const newSkip = pageNumber * limit;
         dispatch(setPagination({ limit: limit, skip: newSkip }));
         dispatch(
           fetchProducts({
@@ -44,15 +44,15 @@ const InfiniteScroll = ({ category }) => {
         );
         dispatch(setLoading(false));
         return () => clearTimeout(timeoutId);
-      }, 900);
+      }, 500);
     }
   }, [inView]);
   return (
     <div ref={ref}>
+      {loading ? <Loading />:null}
       {!loading && !productData.length ? (
         <p>No data to load.</p>
       ) : null}
-      {loading ? <Loading />:null}
     </div>
   );
 };

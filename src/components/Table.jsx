@@ -1,6 +1,7 @@
 import React from 'react'
+import Loading from './Loading'
 
-const Table = ({headers, data, headerTitle, toggle}) => {
+const Table = ({headers, data, headerTitle, toggle, loading}) => {
   return (
     <table className="my-2 border-2 border-gray-100 ">
       {/* table header */}
@@ -29,9 +30,12 @@ const Table = ({headers, data, headerTitle, toggle}) => {
               </tr>
             ))
           ) : (
+            <>
+            {loading ? <Loading/> : 
             <tr className="py-2">
               <td>"No data found"</td>
-            </tr>
+            </tr>}
+            </>
           )}
         </tbody>
       </table>
