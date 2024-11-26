@@ -1,29 +1,16 @@
-import React from "react";
-import { categorySelector } from "../store/selectors/categorySelector"
+import { categorySelector } from "../store/selectors/categorySelector";
 import Button from "./Button";
-import { fetchProducts, resetProducts } from "../store/reducers/product";
 import { useSelector, useDispatch } from "react-redux";
 
-const Category = () => {
+const Category = ({ onButtonClick }) => {
   const categoryData = useSelector(categorySelector);
-  const dispatch = useDispatch();
-  const limit = 15;
-  
 
-  const handleButtonClick = (selectedCategory) => {
-    dispatch(resetProducts());
-    
-    dispatch(
-      fetchProducts({
-        category: selectedCategory,
-        limit: limit,
-        skip: 0,
-      })
-    );
-  };
-  
   return (
     <div className="flex gap-x-5 ">
+        {/* reset button to display products from all categories */}
+      <Button type="reset" name="Reset" onClick={() => onButtonClick(null)} />
+
+        {/* category buttons  */}
       {categoryData.length > 0 ? (
         categoryData
           .slice(0, 5)
@@ -32,7 +19,7 @@ const Category = () => {
               key={category.slug}
               type={category.slug}
               name={category.name}
-              onClick={() => handleButtonClick(category.slug)}
+              onClick={() => onButtonClick(category.slug)}
             />
           ))
       ) : (

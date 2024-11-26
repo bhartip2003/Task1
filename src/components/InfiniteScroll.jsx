@@ -5,7 +5,7 @@ import { fetchProducts } from '../store/reducers/product';
 import { loadingSelector, productSelector } from '../store/selectors/productSelector';
 import Loading from "./Loading";
 
-const InfiniteScroll = () => {
+const InfiniteScroll = ({category}) => {
     const {ref, inView} = useInView();
     const dispatch = useDispatch();
     const productData = useSelector(productSelector);
