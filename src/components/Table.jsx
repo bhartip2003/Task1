@@ -3,6 +3,7 @@ import React from 'react'
 const Table = ({headers, data, headerTitle, toggle}) => {
   return (
     <table className="my-2 border-2 border-gray-100 ">
+      {/* table header */}
         <thead className="">
           <tr className="my-2">
             {headerTitle.map((header) => (
@@ -10,6 +11,7 @@ const Table = ({headers, data, headerTitle, toggle}) => {
             ))}
           </tr>
         </thead>
+        {/* table body */}
         <tbody className="">
           {data != undefined && data.length > 0 ? (
             data.map((item, index) => (

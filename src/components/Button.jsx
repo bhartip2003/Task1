@@ -9,12 +9,13 @@ const buttonConfig = {
     "home-decoration": {component: GiCeilingLight, color: "bg-yellow-200"}
 }
 
-const Button = ({type, name}) => {
+const Button = ({type, name, onClick}) => {
 const { component: Icon, color } = buttonConfig[type];
 
   return (
    
-    <button className={`${color} text-[#080C1C] rounded-lg py-3 px-3 flex items-center gap-x-2`}>
+    <button className={`${color} hover:bg-slate-200 active:bg-white text-[#080C1C] rounded-lg py-3 px-3 flex items-center gap-x-2 `}
+    onClick={onClick}>
         <Icon />
         {name}
     </button>

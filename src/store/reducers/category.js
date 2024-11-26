@@ -6,7 +6,7 @@ const BASE_URL = import.meta.env.VITE_PRODUCT_URL;
 
 export const fetchCategory = createAsyncThunk(
   "category/fetchCategory",
-  async (params, { dispatch }) => {
+  async (_, { dispatch }) => {
       
         const response = await axios.get(
           `${BASE_URL}/products/categories`

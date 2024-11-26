@@ -5,24 +5,16 @@ const BASE_URL = import.meta.env.VITE_PRODUCT_URL;
 
 export const fetchProducts = createAsyncThunk(
   "product/fetchProducts",
-  async ({ limit, skip }, { dispatch }) => {
-    const response = await axios.get(
-      `${BASE_URL}/products?limit=${limit}&skip=${skip}`
-    );
-    dispatch(setProducts(response.data.products));
-  }
-);
-
-export const fetchProductsByCategory = createAsyncThunk(
-  "product/fetchProductsByCategory",
   async ({ category, limit, skip }, { dispatch }) => {
-    const response = await axios.get(
-      `${BASE_URL}/products/category/${category}?limit=${limit}&skip=${skip}`
-    );
-
+    const url = category
+      ? `${BASE_URL}/products/category/${category}?limit=${limit}&skip=${skip}`
+      : `${BASE_URL}/products?limit=${limit}&skip=${skip}`;
+   
+    const response = await axios.get(url);
     dispatch(setProducts(response.data.products));
   }
 );
+
 
 const productSlice = createSlice({
   name: "product",
@@ -36,7 +28,7 @@ const productSlice = createSlice({
       state.productData = [];
     },
     setProducts: (state, action) => {
-      state.productData = [...productData, ...action.payload];
+      state.productData = [...state.productData, ...action.payload];
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
@@ -47,6 +39,7 @@ const productSlice = createSlice({
   },
 });
 
-export const { setError, setLoading, setProducts, resetProducts } = productSlice.actions;
+export const { setError, setLoading, setProducts, resetProducts } =
+  productSlice.actions;
 
 export default productSlice.reducer;
