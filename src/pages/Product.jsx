@@ -8,6 +8,7 @@ import { loadingSelector, productSelector } from "../store/selectors/productSele
 import Category from "../components/product/Category";
 import InfiniteScroll from "../components/product/InfiniteScroll";
 import { limitSelector } from "../store/selectors/paginationSelector";
+import { resetPagination } from "../store/reducers/pagination";
 
 const Product = () => {
   const [selectedCategory, setSelectedCategory] = useState();
@@ -25,6 +26,7 @@ const Product = () => {
     setSelectedCategory(category);
 
     dispatch(resetProducts());
+    dispatch(resetPagination({limit: limit, skip: 0, currPage: 1}));
     dispatch(
       fetchProducts({
         category: category,

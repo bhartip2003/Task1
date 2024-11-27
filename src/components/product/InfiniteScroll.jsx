@@ -30,7 +30,7 @@ const InfiniteScroll = ({ category }) => {
   }, [limit, skip]);
 
   useEffect(() => {
-    if (inView && !loading) {
+    if (inView && !loading && skip < productData.length) {
       const timeoutId = setTimeout(() => {
         const newSkip = currPage * limit;
         const newPage = currPage + 1;
