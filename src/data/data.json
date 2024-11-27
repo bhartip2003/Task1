@@ -5,6 +5,9 @@
         "change_amount",
         "change_percentage"
     ],
+    "headerTitle": [
+        "Ticker", "Price", "Change Amount", "Change %"
+    ],
     "top_gainers": [
         {
             "ticker": "KWESW",
