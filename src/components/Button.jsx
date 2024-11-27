@@ -1,6 +1,6 @@
 import React from 'react'
-import { GiCeilingLight, GiLipstick, GiPerfumeBottle, GiSlicedBread, GiWoodenChair } from 'react-icons/gi'
-import { HiMiniXMark } from 'react-icons/hi2';
+import { GiCancel, GiCeilingLight, GiLipstick, GiPerfumeBottle, GiSlicedBread, GiWoodenChair } from 'react-icons/gi'
+
 
 const buttonConfig = {
     "beauty": {component: GiLipstick, color: 'bg-pink-200'},
@@ -8,7 +8,7 @@ const buttonConfig = {
     "furniture": {component: GiWoodenChair, color: 'bg-blue-200'},
     "groceries": {component: GiSlicedBread, color: 'bg-green-200'},
     "home-decoration": {component: GiCeilingLight, color: "bg-yellow-200"},
-    "reset": {component: HiMiniXMark, color: "bg-red-400"}
+    "reset": {component: GiCancel, color: "bg-red-400"}
 }
 
 const Button = ({type, name, onClick}) => {

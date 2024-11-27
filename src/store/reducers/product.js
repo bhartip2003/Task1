@@ -5,7 +5,7 @@ const BASE_URL = import.meta.env.VITE_PRODUCT_URL;
 
 export const fetchProducts = createAsyncThunk(
   "product/fetchProducts",
-  async ({ category, limit, skip }, { dispatch }) => {
+  async ({ category=null, limit, skip }, { dispatch }) => {
 
     dispatch(setLoading(true));
     const url = category

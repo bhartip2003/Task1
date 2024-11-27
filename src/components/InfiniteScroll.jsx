@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, setLoading } from "../store/reducers/product";
+import { fetchProducts } from "../store/reducers/product";
 import {
   loadingSelector,
   productSelector,

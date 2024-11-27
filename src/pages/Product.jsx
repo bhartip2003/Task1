@@ -18,7 +18,7 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(fetchCategory());
-    dispatch(fetchProducts({category:null, limit: limit, skip: 0}));
+    dispatch(fetchProducts({ limit: limit, skip: 0}));
   }, []);
 
   const handleButtonClick = (category) => {

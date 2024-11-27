@@ -19,7 +19,6 @@ const LandingPage = () => {
 
   useEffect(() => {
     dispatch(fetchTopGainers());
-    // dispatch(fetchTopLosers());
   }, []);
 
 
