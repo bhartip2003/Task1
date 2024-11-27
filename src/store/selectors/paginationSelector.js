@@ -12,8 +12,13 @@ export const skipSelector = createSelector(
     (pagination) => pagination.skip
 );
 
+export const currentPageSelector = createSelector(
+    paginationStore,
+    (pagination) => pagination.currPage
+);
+
 export const paginationStateSelector = createSelector(
     paginationStore,
-    (pagination) => ({ limit: pagination.limit, skip: pagination.skip })
+    (pagination) => ({ limit: pagination.limit, skip: pagination.skip, currPage: pagination.currPage })
 );
 

@@ -7,6 +7,7 @@ import {
   productSelector,
 } from "../store/selectors/productSelector";
 import {
+  currentPageSelector,
   limitSelector,
   skipSelector,
 } from "../store/selectors/paginationSelector";
@@ -19,22 +20,22 @@ const InfiniteScroll = ({ category }) => {
   const dispatch = useDispatch();
   const limit = useSelector(limitSelector);
   const skip = useSelector(skipSelector);
+  const currPage = useSelector(currentPageSelector);
   const [searchParams, setSearchParams] = useSearchParams();
   const productData = useSelector(productSelector);
   const loading = useSelector(loadingSelector);
 
-  const pageNumber = Math.ceil(productData.length / limit);
 
   useEffect(() => {
     setSearchParams({ limit, skip });
   }, [limit, skip]);
 
   useEffect(() => {
-    if (inView && !loading && pageNumber) {
+    if (inView && !loading && currPage) {
       dispatch(setLoading(true));
       const timeoutId = setTimeout(() => {
-        const newSkip = pageNumber * limit;
-        dispatch(setPagination({ limit: limit, skip: newSkip }));
+        const newSkip = (currPage-1) * limit;
+        dispatch(setPagination({ limit: limit, skip: newSkip, currPage: currPage+1 }));
         dispatch(
           fetchProducts({
             category: category,
