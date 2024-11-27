@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import {
   errorSelector,
   loadingSelector,
-} from "../../store/selectors/stockSelector";
+} from "../store/selectors/stockSelector";
 import { useSelector } from "react-redux";
-import { headers, headerTitle } from "../../data/data.json";
-import Loading from "../Loading";
-import Table from "../Table";
+import { headers, headerTitle } from "../data/data.json";
+import Loading from "./coreComponents/Loading";
+import Table from "./coreComponents/Table";
 
 const StocksTable = ({ data, title, color }) => {
   const loading = useSelector(loadingSelector);

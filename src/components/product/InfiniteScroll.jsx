@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../store/reducers/product";
+import { fetchProducts } from "../../store/reducers/product";
 import {
   loadingSelector,
   productSelector,
-} from "../store/selectors/productSelector";
+} from "../../store/selectors/productSelector";
 import {
   currentPageSelector,
   limitSelector,
   skipSelector,
-} from "../store/selectors/paginationSelector";
-import Loading from "./Loading";
+} from "../../store/selectors/paginationSelector";
+import Loading from "../coreComponents/Loading";
 import { useSearchParams } from "react-router-dom";
-import { setPagination } from "../store/reducers/pagination";
+import { setPagination } from "../../store/reducers/pagination";
 
 const InfiniteScroll = ({ category }) => {
   const { ref, inView } = useInView({ threshold: 1 });

@@ -1,0 +1,10 @@
+{
+    "buttonConfig": {
+        "beauty": {"component": "GiLipstick", "color": "bg-pink-200"},
+        "fragrances": {"component": "GiPerfumeBottle", "color": "bg-orange-200"},
+        "furniture": {"component": "GiWoodenChair", "color": "bg-blue-200"},
+        "groceries": {"component": "GiSlicedBread", "color": "bg-green-200"},
+        "home-decoration": {"component": "GiCeilingLight", "color": "bg-yellow-200"},
+        "reset": {"component": "GiCancel", "color": "bg-red-400"}
+}
+}

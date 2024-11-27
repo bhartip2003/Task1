@@ -4,7 +4,7 @@ import { Bar } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { errorSelector, incomeSelector, loadingSelector } from "../store/selectors/incomeSelector";
 import { fetchIncomeStatement } from "../store/reducers/income";
-import Loading from "./Loading";
+import Loading from "./coreComponents/Loading";
 
 const BarChart = ({company}) => {
     const dispatch = useDispatch();

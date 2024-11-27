@@ -11,7 +11,7 @@ import {
 } from "../store/selectors/companySelector";
 import { useParams } from "react-router-dom";
 import { fetchCompanyOverview } from "../store/reducers/company";
-import Loading from "../components/Loading";
+import Loading from "../components/coreComponents/Loading";
 
 const Company = () => {
   const dispatch = useDispatch();

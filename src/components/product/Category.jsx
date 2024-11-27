@@ -1,6 +1,7 @@
-import { categorySelector } from "../store/selectors/categorySelector";
+import { categorySelector } from "../../store/selectors/categorySelector";
 import Button from "./Button";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {buttonConfig} from "../../config.json";
 
 const Category = ({ onButtonClick }) => {
   const categoryData = useSelector(categorySelector);
@@ -8,7 +9,7 @@ const Category = ({ onButtonClick }) => {
   return (
     <div className="flex gap-x-5 ">
         {/* reset button to display products from all categories */}
-      <Button type="reset" name="Reset" onClick={() => onButtonClick(null)} />
+      <Button type="reset" name="Reset" buttonConfig={buttonConfig} onClick={() => onButtonClick(null)} />
 
         {/* category buttons  */}
       {categoryData.length > 0 ? (
@@ -19,6 +20,7 @@ const Category = ({ onButtonClick }) => {
               key={category.slug}
               type={category.slug}
               name={category.name}
+              buttonConfig={buttonConfig}
               onClick={() => onButtonClick(category.slug)}
             />
           ))

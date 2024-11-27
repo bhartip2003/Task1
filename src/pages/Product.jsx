@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { headers, headerTitle } from "../data/product.json";
-import Table from "../components/Table";
+import Table from "../components/coreComponents/Table";
 import { useDispatch ,useSelector } from "react-redux";
 import { fetchCategory } from "../store/reducers/category";
-import { fetchProducts, resetProducts, setLoading } from "../store/reducers/product";
+import { fetchProducts, resetProducts } from "../store/reducers/product";
 import { loadingSelector, productSelector } from "../store/selectors/productSelector";
-import Category from "../components/Category";
-import InfiniteScroll from "../components/InfiniteScroll";
+import Category from "../components/product/Category";
+import InfiniteScroll from "../components/product/InfiniteScroll";
 import { limitSelector } from "../store/selectors/paginationSelector";
 
 const Product = () => {
