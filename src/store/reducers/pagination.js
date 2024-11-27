@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   limit: 15, // Default items per page
   skip: 0,   // Items to skip (calculated based on the current page)
-  currPage: 1,  // current page number
+  currPage: 0,  // current page number
 };
 
 const paginationSlice = createSlice({

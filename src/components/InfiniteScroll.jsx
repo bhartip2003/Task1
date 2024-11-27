@@ -25,17 +25,16 @@ const InfiniteScroll = ({ category }) => {
   const productData = useSelector(productSelector);
   const loading = useSelector(loadingSelector);
 
-
   useEffect(() => {
     setSearchParams({ limit, skip });
   }, [limit, skip]);
 
   useEffect(() => {
-    if (inView && !loading && currPage) {
-      dispatch(setLoading(true));
+    if (inView && !loading) {
       const timeoutId = setTimeout(() => {
-        const newSkip = (currPage-1) * limit;
-        dispatch(setPagination({ limit: limit, skip: newSkip, currPage: currPage+1 }));
+        const newSkip = currPage * limit;
+        const newPage = currPage + 1;
+        dispatch(setPagination({ limit: limit, skip: newSkip, currPage: newPage}));
         dispatch(
           fetchProducts({
             category: category,
@@ -43,7 +42,6 @@ const InfiniteScroll = ({ category }) => {
             skip: newSkip,
           })
         );
-        dispatch(setLoading(false));
         return () => clearTimeout(timeoutId);
       }, 500);
     }
