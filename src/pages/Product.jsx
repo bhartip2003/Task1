@@ -40,12 +40,14 @@ const Product = () => {
     );
   }, [searchParamsCategory]);
 
+
   const handleButtonClick = (category) => {
     if (category) {
-      setSearchParams({ "category": category });
+      searchParams.set("category", category );
     } else {
-      setSearchParams({});
+      searchParams.delete("category");
     }
+    setSearchParams(searchParams);
   };
 
   return (
@@ -65,7 +67,7 @@ const Product = () => {
       />
 
       {/* infinite scroll */}
-      <InfiniteScroll category={searchParamsCategory || null} />
+      <InfiniteScroll category={searchParamsCategory} />
     </div>
   );
 };

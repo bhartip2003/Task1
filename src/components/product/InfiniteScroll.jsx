@@ -23,7 +23,7 @@ const InfiniteScroll = ({ category }) => {
   const productData = useSelector(productSelector);
   const loading = useSelector(loadingSelector);
 
-  console.log("category in infinite scroll", category);
+  
   useEffect(() => {
     if (inView && !loading && skip < productData.length) {
       const timeoutId = setTimeout(() => {
