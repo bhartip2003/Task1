@@ -14,6 +14,8 @@ import { resetPagination } from "../store/reducers/pagination";
 import { useSearchParams } from "react-router-dom";
 import { SearchParams } from "../constants/searchParams";
 import ModalForm from "../components/product/ModalForm";
+import { formSelector } from "../store/selectors/formSelector";
+import { setModal } from "../store/reducers/form";
 
 
 const Product = () => {
@@ -21,7 +23,7 @@ const Product = () => {
   const dispatch = useDispatch();
   const limit = useSelector(limitSelector);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isModalFormOpen, setModalFormOpen] = useState(false);
+  const isModalOpen = useSelector(formSelector);
 
   useEffect(() => {
     dispatch(fetchCategory());
@@ -52,6 +54,10 @@ const Product = () => {
     setSearchParams(searchParams);
   };
 
+ const handleEditClick = () => {
+    dispatch(setModal(!isModalOpen));
+ }
+
   return (
     <div className="container flex flex-col justify-center items-center my-32 gap-y-10">
       <h1 className="text-3xl font-semibold ">Products Page</h1>
@@ -66,12 +72,13 @@ const Product = () => {
         headerTitle={headerTitle}
         toggle={false}
         isEditable={true}
+        handleEditClick={handleEditClick}
       />
 
       {/* infinite scroll */}
       <InfiniteScroll category={searchParamsCategory} />
 
-      <ModalForm isOpen={isModalFormOpen} />
+      { isModalOpen ? <ModalForm setModal={handleEditClick}  /> : null}
     </div>
   );
 };
