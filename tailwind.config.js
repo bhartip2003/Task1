@@ -11,6 +11,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors : {
+        "primary": "#080C1C",
+      },
     },
   },
   plugins: [],

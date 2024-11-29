@@ -65,7 +65,7 @@ const Product = () => {
         headers={headers}
         headerTitle={headerTitle}
         toggle={false}
-        loading={loading}
+        isEditable={true}
       />
 
       {/* infinite scroll */}

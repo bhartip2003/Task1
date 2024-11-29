@@ -1,6 +1,6 @@
 import React from "react";
 
-const Table = ({ headers, data, headerTitle, toggle, loading }) => {
+const Table = ({ headers, data, headerTitle, toggle, isEditable }) => {
   return (
     <table className="my-2 border-2 border-gray-100 ">
       {/* table header */}
@@ -11,6 +11,9 @@ const Table = ({ headers, data, headerTitle, toggle, loading }) => {
               {header}
             </th>
           ))}
+          { isEditable ?
+            <th className="px-3 border-2 capitalize">Action</th> : null
+          }
         </tr>
       </thead>
       {/* table body */}
@@ -31,6 +34,9 @@ const Table = ({ headers, data, headerTitle, toggle, loading }) => {
                   {item[header]}
                 </td>
               ))}
+              { isEditable ? 
+              <td className="px-4"><button className="px-1 rounded-sm border-r-2 hover:text-violet-500 hover:underline bg-gray-100 text-primary">Edit</button></td> : null
+              }
             </tr>
           ))
         ) : (
