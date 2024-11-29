@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { headers, headerTitle } from "../data/product.json";
 import Table from "../components/coreComponents/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategory } from "../store/reducers/category";
 import { fetchProducts, resetProducts } from "../store/reducers/product";
 import {
-  loadingSelector,
   productSelector,
 } from "../store/selectors/productSelector";
 import Category from "../components/product/Category";
@@ -14,14 +13,15 @@ import { limitSelector } from "../store/selectors/paginationSelector";
 import { resetPagination } from "../store/reducers/pagination";
 import { useSearchParams } from "react-router-dom";
 import { SearchParams } from "../constants/searchParams";
+import ModalForm from "../components/product/ModalForm";
 
 
 const Product = () => {
   const productData = useSelector(productSelector);
   const dispatch = useDispatch();
   const limit = useSelector(limitSelector);
-  const loading = useSelector(loadingSelector);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isModalFormOpen, setModalFormOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCategory());
@@ -70,6 +70,8 @@ const Product = () => {
 
       {/* infinite scroll */}
       <InfiniteScroll category={searchParamsCategory} />
+
+      <ModalForm isOpen={isModalFormOpen} />
     </div>
   );
 };
