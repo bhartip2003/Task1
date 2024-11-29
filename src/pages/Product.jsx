@@ -13,6 +13,8 @@ import InfiniteScroll from "../components/product/InfiniteScroll";
 import { limitSelector } from "../store/selectors/paginationSelector";
 import { resetPagination } from "../store/reducers/pagination";
 import { useSearchParams } from "react-router-dom";
+import { SearchParams } from "../constants/searchParams";
+
 
 const Product = () => {
   const productData = useSelector(productSelector);
@@ -43,9 +45,9 @@ const Product = () => {
 
   const handleButtonClick = (category) => {
     if (category) {
-      searchParams.set("category", category );
+      searchParams.set(SearchParams.CATEGORY, category );
     } else {
-      searchParams.delete("category");
+      searchParams.delete(SearchParams.CATEGORY);
     }
     setSearchParams(searchParams);
   };
