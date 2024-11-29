@@ -35,7 +35,7 @@ const Table = ({ headers, data, headerTitle, toggle, isEditable, handleEditClick
                 </td>
               ))}
               { isEditable ? 
-              <td className="px-4"><button className=" px-1 rounded-sm border-r-2 hover:text-violet-500 hover:underline bg-gray-100 text-primary" onClick={handleEditClick}>Edit</button></td> : null
+              <td className="px-4"><button className=" px-1 rounded-sm border-r-2 hover:text-violet-500 hover:underline bg-gray-100 text-primary" onClick={() => handleEditClick(item.id)}>Edit</button></td> : null
               }
             </tr>
           ))

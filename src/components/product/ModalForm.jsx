@@ -8,7 +8,7 @@ const ModalForm = ({ setModal }) => {
     <>
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
           <div className="">
-            <div onClick={setModal}>
+            <div onClick={() => setModal(null)}>
               <HiXMark className="w-4 h-4" />
             </div>
             <div>input</div>

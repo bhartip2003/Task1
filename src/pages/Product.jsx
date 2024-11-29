@@ -4,9 +4,7 @@ import Table from "../components/coreComponents/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategory } from "../store/reducers/category";
 import { fetchProducts, resetProducts } from "../store/reducers/product";
-import {
-  productSelector,
-} from "../store/selectors/productSelector";
+import { productSelector } from "../store/selectors/productSelector";
 import Category from "../components/product/Category";
 import InfiniteScroll from "../components/product/InfiniteScroll";
 import { limitSelector } from "../store/selectors/paginationSelector";
@@ -17,7 +15,6 @@ import ModalForm from "../components/product/ModalForm";
 import { formSelector } from "../store/selectors/formSelector";
 import { setModal } from "../store/reducers/form";
 
-
 const Product = () => {
   const productData = useSelector(productSelector);
   const dispatch = useDispatch();
@@ -27,7 +24,9 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(fetchCategory());
-    dispatch(fetchProducts({ category: searchParamsCategory, limit: limit, skip: 0 }));
+    dispatch(
+      fetchProducts({ category: searchParamsCategory, limit: limit, skip: 0 })
+    );
   }, []);
 
   const searchParamsCategory = searchParams.get("category");
@@ -44,19 +43,26 @@ const Product = () => {
     );
   }, [searchParamsCategory]);
 
-
   const handleButtonClick = (category) => {
     if (category) {
-      searchParams.set(SearchParams.CATEGORY, category );
+      searchParams.set(SearchParams.CATEGORY, category);
     } else {
       searchParams.delete(SearchParams.CATEGORY);
     }
     setSearchParams(searchParams);
   };
 
- const handleEditClick = () => {
+  const handleEditClick = (id) => {
     dispatch(setModal(!isModalOpen));
- }
+    if (id) {
+      searchParams.append(SearchParams.ID, id);
+      setSearchParams(searchParams);
+
+    } else {
+      searchParams.delete(SearchParams.ID);
+      setSearchParams(searchParams);
+    }
+  };
 
   return (
     <div className="container flex flex-col justify-center items-center my-32 gap-y-10">
@@ -78,7 +84,7 @@ const Product = () => {
       {/* infinite scroll */}
       <InfiniteScroll category={searchParamsCategory} />
 
-      { isModalOpen ? <ModalForm setModal={handleEditClick}  /> : null}
+      {isModalOpen ? <ModalForm setModal={handleEditClick} /> : null}
     </div>
   );
 };
