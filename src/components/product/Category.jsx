@@ -5,7 +5,7 @@ import {buttonConfig} from "../../config.json";
 
 const Category = ({ onButtonClick }) => {
   const categoryData = useSelector(categorySelector);
-
+  
   return (
     <div className="flex gap-x-5 ">
         {/* reset button to display products from all categories */}

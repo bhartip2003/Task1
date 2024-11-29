@@ -12,7 +12,6 @@ import {
   skipSelector,
 } from "../../store/selectors/paginationSelector";
 import Loading from "../coreComponents/Loading";
-import { useSearchParams } from "react-router-dom";
 import { setPagination } from "../../store/reducers/pagination";
 
 const InfiniteScroll = ({ category }) => {
@@ -21,14 +20,10 @@ const InfiniteScroll = ({ category }) => {
   const limit = useSelector(limitSelector);
   const skip = useSelector(skipSelector);
   const currPage = useSelector(currentPageSelector);
-  const [searchParams, setSearchParams] = useSearchParams();
   const productData = useSelector(productSelector);
   const loading = useSelector(loadingSelector);
 
-  useEffect(() => {
-    setSearchParams({ limit, skip });
-  }, [limit, skip]);
-
+  
   useEffect(() => {
     if (inView && !loading && skip < productData.length) {
       const timeoutId = setTimeout(() => {
