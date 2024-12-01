@@ -1,10 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { headers, headerTitle } from "../data/product.json";
 import Table from "../components/coreComponents/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategory } from "../store/reducers/category";
-import { fetchProducts, resetProducts, updateProduct, fetchOneProduct } from "../store/reducers/product";
-import { loadingSelector, productItemSelector, productSelector } from "../store/selectors/productSelector";
+import {
+  fetchProducts,
+  resetProducts,
+  updateProduct,
+  fetchOneProduct,
+  clearProductItem,
+  addProduct,
+} from "../store/reducers/product";
+import {
+  loadingSelector,
+  productItemSelector,
+  productSelector,
+} from "../store/selectors/productSelector";
 import Category from "../components/product/Category";
 import InfiniteScroll from "../components/product/InfiniteScroll";
 import { limitSelector } from "../store/selectors/paginationSelector";
@@ -14,7 +25,7 @@ import { SearchParams } from "../constants/searchParams";
 import ModalForm from "../components/product/ModalForm";
 import { formSelector } from "../store/selectors/formSelector";
 import { setModal } from "../store/reducers/form";
-import {formField} from "../config.json"
+import { formField } from "../config.json";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -24,6 +35,7 @@ const Product = () => {
   const loading = useSelector(loadingSelector);
   const [searchParams, setSearchParams] = useSearchParams();
   const isModalOpen = useSelector(formSelector);
+  const [modalAction, setModalAction] = useState("");
 
   useEffect(() => {
     dispatch(fetchCategory());
@@ -32,7 +44,7 @@ const Product = () => {
     );
   }, []);
 
-  const searchParamsCategory = searchParams.get("category");
+  const searchParamsCategory = searchParams.get(SearchParams.CATEGORY);
 
   useEffect(() => {
     dispatch(resetProducts());
@@ -56,21 +68,33 @@ const Product = () => {
   };
 
   const handleEditClick = (id) => {
-    dispatch(setModal(!isModalOpen));
+    setModalAction("edit");
+    dispatch(setModal(true));
     if (id) {
       searchParams.append(SearchParams.ID, id);
       dispatch(fetchOneProduct(id));
-    } else {
+    }else {
       searchParams.delete(SearchParams.ID);
+      dispatch(clearProductItem());
     }
     setSearchParams(searchParams);
   };
 
-  const updateItem = (formData) => {
-    dispatch(updateProduct(formData));
-    searchParams.delete(SearchParams.ID);
-    setSearchParams(searchParams);
-    dispatch(setModal(!isModalOpen));
+  const handleAddClick = () => {
+    setModalAction("add");
+    dispatch(clearProductItem());
+    dispatch(setModal(true));
+  }
+
+  const handleSubmit = (formData) => {
+    if( modalAction == "edit"){
+      dispatch(updateProduct(formData));
+      searchParams.delete(SearchParams.ID);
+      setSearchParams(searchParams);
+    } else if(modalAction == "add"){
+      dispatch(addProduct(formData));
+    }
+    dispatch(setModal(false));
   }
 
   return (
@@ -79,6 +103,13 @@ const Product = () => {
 
       {/* product category */}
       <Category onButtonClick={handleButtonClick} />
+
+      <button
+        className="bg-blue-500 hover:bg-blue-600 px-2 py-1 rounded-md"
+        onClick={handleAddClick}
+      >
+        Add Item +
+      </button>
 
       {/* product table */}
       <Table
@@ -93,7 +124,17 @@ const Product = () => {
       {/* infinite scroll */}
       <InfiniteScroll category={searchParamsCategory} />
 
-      {isModalOpen ? <ModalForm setModal={handleEditClick} formField={formField} updateItem={updateItem} productDetails={productItem} loading={loading} /> : null}
+      {isModalOpen ? (
+        <ModalForm
+        buttonText={modalAction}
+        title={`${modalAction} Item`}
+          setModal={() => dispatch(setModal(!isModalOpen))}
+          formField={formField}
+          onSubmit={handleSubmit}
+          productDetails={productItem}
+          loading={loading}
+        />
+      ) : null}
     </div>
   );
 };
