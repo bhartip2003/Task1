@@ -1,6 +1,7 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 
-const Table = ({ headers, data, headerTitle, toggle, isEditable, handleEditClick }) => {
+
+const Table = ({ headers, data, handleClick, headerTitle, toggle, isEditable, handleEditClick }) => {
   return (
     <table className="my-2 border-2 border-gray-100 ">
       {/* table header */}
@@ -41,7 +42,7 @@ const Table = ({ headers, data, headerTitle, toggle, isEditable, handleEditClick
           ))
         ) : (
           <tr className="py-2">
-            <td>"No data found"</td>
+            <td>No data found</td>
           </tr>
         )}
       </tbody>

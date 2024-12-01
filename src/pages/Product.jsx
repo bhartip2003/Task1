@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { headers, headerTitle } from "../data/product.json";
 import Table from "../components/coreComponents/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategory } from "../store/reducers/category";
-import { fetchProducts, resetProducts } from "../store/reducers/product";
-import { productSelector } from "../store/selectors/productSelector";
+import { fetchProducts, resetProducts, updateProduct, fetchOneProduct } from "../store/reducers/product";
+import { loadingSelector, productItemSelector, productSelector } from "../store/selectors/productSelector";
 import Category from "../components/product/Category";
 import InfiniteScroll from "../components/product/InfiniteScroll";
 import { limitSelector } from "../store/selectors/paginationSelector";
@@ -14,11 +14,14 @@ import { SearchParams } from "../constants/searchParams";
 import ModalForm from "../components/product/ModalForm";
 import { formSelector } from "../store/selectors/formSelector";
 import { setModal } from "../store/reducers/form";
+import {formField} from "../config.json"
 
 const Product = () => {
-  const productData = useSelector(productSelector);
   const dispatch = useDispatch();
+  const productData = useSelector(productSelector);
   const limit = useSelector(limitSelector);
+  const productItem = useSelector(productItemSelector);
+  const loading = useSelector(loadingSelector);
   const [searchParams, setSearchParams] = useSearchParams();
   const isModalOpen = useSelector(formSelector);
 
@@ -56,13 +59,19 @@ const Product = () => {
     dispatch(setModal(!isModalOpen));
     if (id) {
       searchParams.append(SearchParams.ID, id);
-      setSearchParams(searchParams);
-
+      dispatch(fetchOneProduct(id));
     } else {
       searchParams.delete(SearchParams.ID);
-      setSearchParams(searchParams);
     }
+    setSearchParams(searchParams);
   };
+
+  const updateItem = (formData) => {
+    dispatch(updateProduct(formData));
+    searchParams.delete(SearchParams.ID);
+    setSearchParams(searchParams);
+    dispatch(setModal(!isModalOpen));
+  }
 
   return (
     <div className="container flex flex-col justify-center items-center my-32 gap-y-10">
@@ -84,7 +93,7 @@ const Product = () => {
       {/* infinite scroll */}
       <InfiniteScroll category={searchParamsCategory} />
 
-      {isModalOpen ? <ModalForm setModal={handleEditClick} /> : null}
+      {isModalOpen ? <ModalForm setModal={handleEditClick} formField={formField} updateItem={updateItem} productDetails={productItem} loading={loading} /> : null}
     </div>
   );
 };

@@ -7,6 +7,11 @@ export const productSelector = createSelector(
     (product) => product.productData
 );
 
+export const productItemSelector = createSelector(
+    productStore,
+    (product) => product.productItem
+)
+
 export const loadingSelector = createSelector(
     productStore,
     (product) => product.loading
