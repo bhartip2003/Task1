@@ -75,8 +75,8 @@ const Product = () => {
       dispatch(fetchOneProduct(id));
     }else {
       searchParams.delete(SearchParams.ID);
-      dispatch(clearProductItem());
     }
+    dispatch(clearProductItem());
     setSearchParams(searchParams);
   };
 
@@ -94,6 +94,7 @@ const Product = () => {
     } else if(modalAction == "add"){
       dispatch(addProduct(formData));
     }
+    dispatch(clearProductItem());
     dispatch(setModal(false));
   }
 
