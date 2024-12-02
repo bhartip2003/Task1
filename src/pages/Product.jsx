@@ -90,10 +90,10 @@ const Product = () => {
     if( modalAction == "edit"){
       dispatch(updateProduct(formData));
       searchParams.delete(SearchParams.ID);
-      setSearchParams(searchParams);
     } else if(modalAction == "add"){
       dispatch(addProduct(formData));
     }
+    setSearchParams(searchParams);
     dispatch(clearProductItem());
     dispatch(setModal(false));
   }
