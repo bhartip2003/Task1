@@ -7,7 +7,9 @@ const Table = ({
   headerTitle,
   toggle,
   isEditable,
+  isDeletable,
   handleEditClick,
+  handleDeleteClick
 }) => {
   return (
     <table className="my-2 border-2 border-gray-100 ">
@@ -20,7 +22,7 @@ const Table = ({
             </th>
           ))}
           {isEditable ? (
-            <th className="px-3 border-2 capitalize">Action</th>
+            <th className="px-3 border-2 capitalize" colSpan={isDeletable ? 2 : 1}>Action</th>
           ) : null}
         </tr>
       </thead>
@@ -44,13 +46,26 @@ const Table = ({
               {isEditable ? (
                 <td className="px-4">
                   <button
-                    className=" px-1 rounded-sm border-r-2 hover:text-violet-500 hover:underline bg-gray-100 text-primary"
+                    className=" px-1 rounded-sm hover:text-violet-500 hover:underline bg-gray-100 text-primary"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleEditClick(item.id)
                     }}
                   >
                     Edit
+                  </button>
+                </td>
+              ) : null}
+              {isDeletable ? (
+                <td className="px-4">
+                  <button
+                    className=" px-1 rounded-sm hover:bg-red-700 hover:underline bg-red-500 text-white"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteClick(item.id)
+                    }}
+                  >
+                    Delete
                   </button>
                 </td>
               ) : null}
