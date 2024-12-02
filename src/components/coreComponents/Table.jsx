@@ -1,7 +1,14 @@
 /* eslint-disable react/prop-types */
 
-
-const Table = ({ headers, data, handleClick, headerTitle, toggle, isEditable, handleEditClick }) => {
+const Table = ({
+  headers,
+  data,
+  handleClick,
+  headerTitle,
+  toggle,
+  isEditable,
+  handleEditClick,
+}) => {
   return (
     <table className="my-2 border-2 border-gray-100 ">
       {/* table header */}
@@ -12,15 +19,14 @@ const Table = ({ headers, data, handleClick, headerTitle, toggle, isEditable, ha
               {header}
             </th>
           ))}
-          { isEditable ?
-            <th className="px-3 border-2 capitalize">Action</th> : null
-          }
+          {isEditable ? (
+            <th className="px-3 border-2 capitalize">Action</th>
+          ) : null}
         </tr>
       </thead>
       {/* table body */}
       <tbody>
-        {
-        data && data.length ? (
+        {data && data.length ? (
           data.map((item, index) => (
             <tr
               key={item.ticker}
@@ -35,9 +41,19 @@ const Table = ({ headers, data, handleClick, headerTitle, toggle, isEditable, ha
                   {item[header]}
                 </td>
               ))}
-              { isEditable ? 
-              <td className="px-4"><button className=" px-1 rounded-sm border-r-2 hover:text-violet-500 hover:underline bg-gray-100 text-primary" onClick={() => handleEditClick(item.id)}>Edit</button></td> : null
-              }
+              {isEditable ? (
+                <td className="px-4">
+                  <button
+                    className=" px-1 rounded-sm border-r-2 hover:text-violet-500 hover:underline bg-gray-100 text-primary"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleEditClick(item.id)
+                    }}
+                  >
+                    Edit
+                  </button>
+                </td>
+              ) : null}
             </tr>
           ))
         ) : (
