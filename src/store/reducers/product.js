@@ -42,6 +42,11 @@ const productSlice = createSlice({
 
       state.productData = [...state.productData, state.productItem];
     },
+    setDeleteProduct: (state, action) => {
+      state.productData = state.productData.filter(
+        (product) => product.id != action.payload
+      );
+    },
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
@@ -94,7 +99,6 @@ export const addProduct = createAsyncThunk(
       headers: { "Content-Type": "application/json" },
     });
     dispatch(setAddedProduct(response.data));
-    
   }
 );
 
@@ -105,6 +109,7 @@ export const {
   setProductItem,
   setUpdatedProduct,
   setAddedProduct,
+  setDeleteProduct,
   resetProducts,
   clearProductItem,
 } = productSlice.actions;

@@ -10,6 +10,7 @@ import {
   fetchOneProduct,
   clearProductItem,
   addProduct,
+  setDeleteProduct,
 } from "../store/reducers/product";
 import {
   loadingSelector,
@@ -98,6 +99,10 @@ const Product = () => {
     dispatch(setModal(false));
   }
 
+  const handleDelete = (id) => {
+    dispatch(setDeleteProduct(id));
+  }
+
   return (
     <div className="container flex flex-col justify-center items-center my-32 gap-y-10">
       <h1 className="text-3xl font-semibold ">Products Page</h1>
@@ -119,7 +124,9 @@ const Product = () => {
         headerTitle={headerTitle}
         toggle={false}
         isEditable={true}
+        isDeletable={true}
         handleEditClick={handleEditClick}
+        handleDeleteClick={handleDelete}
       />
 
       {/* infinite scroll */}
