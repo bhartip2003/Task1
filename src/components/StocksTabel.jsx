@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import {
   errorSelector,
@@ -28,7 +29,7 @@ const StocksTable = ({ data, title, color }) => {
       <h1 className={`font-bold text-2xl ${color}`}>{title}</h1>
       
       {/* stock table */}
-      <Table data={data} headers={headers} headerTitle={headerTitle} toggle={true} />
+      <Table data={data} headers={headers} headerTitle={headerTitle} toggle={true} handleClick={handleClick} />
     </div>
   );
 };
